@@ -1,4 +1,4 @@
-money = int(input("Введите желаемый депозит: "))
+money = int(input("Input a deposit: "))
 
 per_cent = {'ТКБ': 5.6, 'СКБ': 5.9, 'ВТБ': 4.28, 'СБЕР': 4.0}
 
@@ -12,7 +12,7 @@ total_income = [income_TKB, income_SKV, income_BTV, income_SBER]
 print(total_income)
 
 max_income = max(total_income)
-print("Максимальный доход:", max_income)
+print("Maximum income: ", max_income)
 
 
 
