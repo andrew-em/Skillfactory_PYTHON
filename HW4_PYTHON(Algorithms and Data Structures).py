@@ -49,8 +49,6 @@ def binary_search(array, element, left, right):
 mass = insertionSort(final_list)
 array = mass
 element = input_num
-mass_min = mass[0]
-mass_max = mass[-1]
 
-print("Номер позиции элемента, соответствующего условиям:",binary_search(array, element, mass_min, mass_max))
+print("Номер позиции элемента, соответствующего условиям:",binary_search(array, element, 0, len(array) - 1))
 
