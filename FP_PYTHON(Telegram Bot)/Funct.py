@@ -4,21 +4,15 @@ from extensions import ConvertException, CurrencyConverter
 
 bot = telebot.TeleBot(TOKEN)
 
-@bot.message_handler()
-def echo_test(message: telebot.types.Message):
-    bot.send_message(message.chat.id, "This is a message")
-bot.polling()
-
 @bot.message_handler(commands=['start'])
 def handle_start(message: telebot.types.Message):
     text = "Введите команду в формате:\n <имя валюты> \
         <имя валюты в которую надо конвентировать> \
          <количество конвентируемой валюты>\n" \
          'Увидеть список всех доступных валют: /values \n \
-           Информация о работе бота:  /help'
+           Информация о работе бота: /help'
 
     bot.reply_to(message, text)
-bot.polling()
 
 @bot.message_handler(commands=['help'])
 def handle_help(message: telebot.types.Message):
@@ -44,7 +38,7 @@ def convert(message: telebot.types.Message):
             raise ConvertException('Введите меньше параметров.')
 
         quote, base, amount = values
-        total_base = CurrencyConverter.convert(quote, base, amount)
+        total_base = CurrencyConverter.get_price(quote, base, amount)
 
     except ConvertException as exc:
         bot.reply_to(message, f'Ошибка пользователя\n {exc}')
@@ -57,9 +51,3 @@ def convert(message: telebot.types.Message):
         bot.send_message(message.chat.id, text)
 
 bot.polling()
-
-
-#     pip3 uninstall telebot
-#     pip3 uninstall PyTelegramBotAPI
-#     pip3 install pyTelegramBotAPI
-#     pip3 install - -upgrade pyTelegramBotAPI
